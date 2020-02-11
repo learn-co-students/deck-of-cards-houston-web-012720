@@ -1,22 +1,24 @@
 class Deck
     attr_accessor :cards
 
-    @@ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-    @@suits = ["Hearts", "Clubs", "Diamonds", "Spades"]
-
     def initialize
+        ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+        suits = ["Hearts", "Clubs", "Diamonds", "Spades"]
+        # @cards = []
+        # ranks.each do |rank|
+        #     suits.each do |suit|
+        #         @cards << Card.new(suit, rank)
+        #     end
+        # end
+        args = ranks.product(suits)
         @cards = []
-        @@ranks.each do |rank|
-            @@suits.each do |suit|
-                @cards << Card.new(suit, rank)
-            end
+        args.each do |arg|
+            @cards << Card.new(arg[1], arg[0])
         end
-        @cards
     end
 
     def choose_card
-        random_card = @cards.sample
-        @cards.delete(random_card)
+        @cards.delete(@cards.sample)
     end
 end
 
